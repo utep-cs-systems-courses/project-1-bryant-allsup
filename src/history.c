@@ -14,30 +14,26 @@ List *init_history(){
 }
 
 void add_history(List *list, char *str){
-  Item *temp = malloc(sizeof(Item));
-  temp->str=str;
-  temp->next=NULL;
   Item *current= list->root;
-  int id = list->root->id+1;
-  for(; current->next!=NULL; id++){
-    current =current->next;
+  while(current->next!=NULL){
+    current=current->next;
   }
-  temp->id=id;
-  if(current->next==NULL)
-    {current->next=temp;}
-  
+  int id =current->id;
+    current->next = (Item *)malloc(sizeof(Item));
+    current->next->id = id+1;
+    current->next->str = str;
+    current->next->next =NULL;
  
 }
 char *get_history(List *list, int id){
   Item *current= list->root;
   char *string;
 
-  while(current->id!=id && current->next!=NULL)
+  for(int i = 0;current->id!=i && current->next!=NULL;i++)
     {current=current->next;
-  if(current->id==id){
-      printf("%d\n",current->id);
+  if(current->next->id==i){
       string = current->str;
-      printf("We Found it\n");
+      printf("History: %s \n",current->str);
       return string;
   }}
   printf("No String\n");
@@ -47,8 +43,8 @@ char *get_history(List *list, int id){
 void print_history(List *list){
   Item *current = list->root;
   while(current->next!=NULL){
-      printf("%s ",current->str);
-      printf(" id: %d\n",current->id);
+      printf("%s: ",current->str);
+      printf("id: %d\n",current->id);
       current = current->next;
   }
   if(current->next==NULL){

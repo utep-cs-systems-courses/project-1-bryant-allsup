@@ -22,3 +22,8 @@ Tokenizer takes user inputs and places it into history first then tokenizes it
 	  -tokenize splits up based on space_char in user input
 	  -tokenized words are then printed
 	  -finally lines are released
+
+Bugs: segmentation fault when freeing with even amount of words
+      print History retains correct ID but will have same txt as other; except
+      dummy
+	
