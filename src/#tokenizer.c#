@@ -108,6 +108,5 @@ free_tokens(char **tokens)
       t++;
     }
   free(tokens);
-  printf("Free Tokens\n");
-  print_tokens(tokens);
+  
     }
