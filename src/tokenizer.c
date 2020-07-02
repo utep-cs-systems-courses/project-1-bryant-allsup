@@ -56,12 +56,12 @@ char
 *copy_str(char *inStr,short len)//whatever is given has a copy created at a new address
 {
   char *copy =(char*)malloc((len+1)*sizeof(char*));
-  int letter;
-  for(letter=0;letter<len;letter++)
+  int c=0;
+  for(;c<len;c++)
     {
-      copy[letter]=inStr[letter];
+      copy[c] = inStr[c];//copy
     }
-  copy[++letter]='\0';
+  copy[c]='\0';//end of string
   return copy;
 }
 /*copy str is used so you have a copy of the orginal string
@@ -71,7 +71,7 @@ and have a tokenized version of the string as well
 char
 **tokenize(char* str)
 {
-  char **tokenized = (char**)malloc((count_words(str)+1)*sizeof(char**));//memory for str+1
+  char **tokenized = (char**)malloc((count_words(str)+1)*sizeof(char**));
   char *begin , *end;
   short length = 0;
   begin=word_start(str);//find first non_space char
@@ -95,18 +95,16 @@ print_tokens(char **tokens)
     {
       printf("Print tokens: %s \n",tokens[t]);
     }
-  printf("Finsished\n");
 }
 
 void
 free_tokens(char **tokens)
 {
-  int t;
+  int t=0;
   while(tokens[t])
     {
       free(tokens[t]);
       t++;
     }
   free(tokens);
-  printf("Free Tokens\n");
-    }
+}
