@@ -8,20 +8,27 @@ main(void)
   int *value = 0;
   int boolean = 1;
   char get[100];
-  fgets(get,100,stdin);
-  char **token = tokenize(get);
+  char different[100];
+
+  fgets(different,100,stdin);
+  char **token = tokenize(different);
   print_tokens(token);
   free_tokens(token);
-  add_history(list,get);
+  add_history(list,different);
   add_history(list,"howdy");
   add_history(list,"what is up");
+  char *gotten =  get_history(list,2);//should retrieve user input
+  printf("gotten: %s\n",gotten);
+  /*
+  fgets(get,100,stdin);
+  add_history(list,get);
   print_history(list);
   char *gotten =  get_history(list,2);//should retrieve user input
   printf("gotten: %s\n",gotten);
   free_history(list);
+  */
 
 
-  /*
   while(boolean)
     {
       printf(">");
@@ -29,7 +36,9 @@ main(void)
       
       if(get[0]=='!')
 	{
-	  int r = 1;
+	  char *idNumber = get;
+	  idNumber++;
+	  int r = atoi(idNumber);
 	  char *history;
 	  printf("%d\n",r);
 	  history = get_history(list,r);
@@ -40,6 +49,7 @@ main(void)
 	  print_history(list);
 	  free_history(list);
 	  printf("Freed history \n");
+	  print_history(list);
 	  boolean=0;
 	}
       else{
@@ -49,8 +59,6 @@ main(void)
 	free_tokens(token);
 	print_history(list);
       }
-
-      
     }
-  */
 }
+

@@ -23,7 +23,13 @@ Tokenizer takes user inputs and places it into history first then tokenizes it
 	  -tokenized words are then printed
 	  -finally lines are released
 
-Bugs: segmentation fault when freeing with even amount of words
-      print History retains correct ID but will have same txt as other; except
-      dummy
+Bugs:
+	-segmentation fault when freeing with even amount of words
+		potentially offset problem (although if offset number>1 should
+		be affected)
+		
 	
+	-print History retains correct ID but will have same txt with user input;
+     	       potentially problem with fgets
+	       gets looks like it could be static and any instance is = to
+     	       each other?(tested with two variables for fgets and came out different)
